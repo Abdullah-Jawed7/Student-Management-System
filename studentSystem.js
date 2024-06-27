@@ -10,8 +10,6 @@ let courseFee = {
     NEXTJS: 2500,
     PYTHON: 3000,
 };
-let fees = 0;
-let bbb = true;
 class Student {
     static counter = 1200;
     name;
@@ -87,16 +85,15 @@ class Student {
                 ],
             });
             let fee = courseFee[action.course];
-            find.balance = +fee;
+            find.balance += fee;
             console.log(chalk.yellowBright(` ${this.name}, Roll Number ${this.rollNo} \n You select ${action.course} and its fees is ${fee} `));
             find.selectedCourse.push(action.course);
         }
     }
 }
-console.log(chalk.magenta(`\n\t\t______________________________`));
-console.log(chalk.bold.magenta(`\n\t\tWelcome To  The Karachi School`));
-console.log(chalk.magenta(`\n\t\t______________________________`));
-let play = true;
+console.log(chalk.magenta(`\n\t\t____________________________________________`));
+console.log(chalk.bold.magenta(`\n\t\tWelcome To  Dar-ul-Madinah  Schooling System `));
+console.log(chalk.magenta(`\t\t____________________________________________\n`));
 while (true) {
     let explore = await inquirer.prompt({
         name: "action",
@@ -144,7 +141,7 @@ while (true) {
         let findRoll = await inquirer.prompt({
             name: "roll",
             type: "number",
-            message: "Enter Roll Number : ",
+            message: chalk.yellow("Enter Roll Number : "),
         });
         let find = students.find((s) => s.rollNo === findRoll.roll);
         if (find === undefined) {
@@ -158,7 +155,7 @@ while (true) {
         let findRoll = await inquirer.prompt({
             name: "roll",
             type: "number",
-            message: "Enter Roll Number : ",
+            message: chalk.yellow("Enter Roll Number : "),
         });
         let find = students.find((s) => s.rollNo === findRoll.roll);
         find?.removeStd(findRoll.roll);
@@ -167,7 +164,7 @@ while (true) {
         let findRoll = await inquirer.prompt({
             name: "roll",
             type: "number",
-            message: "Enter Roll Number : ",
+            message: chalk.yellow("Enter Roll Number : "),
         });
         let find = students.find((s) => s.rollNo === findRoll.roll);
         await find?.paidFees(findRoll.roll);
@@ -176,7 +173,7 @@ while (true) {
         let findRoll = await inquirer.prompt({
             name: "roll",
             type: "number",
-            message: "Enter Roll Number : ",
+            message: chalk.yellow("Enter Roll Number : "),
         });
         let find = students.find((s) => s.rollNo === findRoll.roll);
         await find?.addCourse(findRoll.roll);
