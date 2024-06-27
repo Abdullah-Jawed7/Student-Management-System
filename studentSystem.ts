@@ -22,11 +22,13 @@ class Student {
   selectedCourse: string[];
   balance: number;
  
-  constructor(name: string, selectedCourse: string[], fes: number) {
+  constructor(name: string, selectedCourse: string, fes: number) {
     this.name = name;
-    this.selectedCourse = selectedCourse;
+    this.selectedCourse = []
+    this.selectedCourse.push(selectedCourse)
     this.rollNo = Student.counter++;
-    this.balance = fes;
+    this.balance = 0;
+    this.balance += fes
  
   }
   showStatus() {
@@ -94,7 +96,7 @@ class Student {
         ],
       });
       let fee = courseFee[action.course];
-      this.balance = +fee;
+      find.balance = +fee;
       console.log(
         chalk.yellowBright(
           ` ${this.name}, Roll Number ${this.rollNo} \n You select ${action.course} and its fees is ${fee} `

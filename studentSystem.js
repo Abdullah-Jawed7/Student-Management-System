@@ -1,27 +1,6 @@
 #! /usr/bin/env node
 import inquirer from "inquirer";
 import chalk from "chalk";
-// interface classes {
-//       id: number;
-//       name: string;
-//       balance: number;
-//     }
-// class Student {
-//     name ;
-//     rollNo;
-//      private course: classes[] = [];
-//     constructor(name:string,){
-//         this.name = name
-//         this.rollNo = Math.floor(Math.random() * 10) + 1000;
-//         this.course =  [
-//                   { id: 1, name: "1st Standard", balance: 5000 },
-//                   { id: 2, name: "2st Standard", balance: 6000 },
-//                   { id: 3, name: "3st Standard", balance: 7000 },
-//                   { id: 4, name: "4st Standard", balance: 8000 },
-//                   { id: 5, name: "5st Standard", balance: 9000 },
-//                 ];
-//     }
-// }
 let students = [];
 let courseFee = {
     HTML: 1000,
@@ -39,17 +18,13 @@ class Student {
     rollNo;
     selectedCourse;
     balance;
-    // ()=>void
     constructor(name, selectedCourse, fes) {
         this.name = name;
-        this.selectedCourse = selectedCourse;
+        this.selectedCourse = [];
+        this.selectedCourse.push(selectedCourse);
         this.rollNo = Student.counter++;
-        this.balance = fes;
-        //     ()=> {
-        //       if (bbb){
-        //         console.log(chalk.blue(`Your all fees are Paid \n  Your Balance has Cleared`));
-        //        } else {
-        // console.log(chalk.blue(`${fes} Pending`));}}
+        this.balance = 0;
+        this.balance += fes;
     }
     showStatus() {
         console.log(chalk.blueBright.bold(`\n\t\tMY STATUS \t\t\n`));
@@ -64,8 +39,7 @@ class Student {
             console.log(chalk.greenBright(`Enter Valid Roll Number`));
         }
         else {
-            let answer = await inquirer
-                .prompt({
+            let answer = await inquirer.prompt({
                 name: "amount",
                 type: "number",
                 message: "Enter amount to Pay : ",
@@ -81,7 +55,6 @@ class Student {
             else {
                 console.log(`Enter Correct Amount`);
             }
-            ;
         }
     }
     removeStd(roll) {
@@ -114,7 +87,7 @@ class Student {
                 ],
             });
             let fee = courseFee[action.course];
-            this.balance = +fee;
+            find.balance = +fee;
             console.log(chalk.yellowBright(` ${this.name}, Roll Number ${this.rollNo} \n You select ${action.course} and its fees is ${fee} `));
             find.selectedCourse.push(action.course);
         }
